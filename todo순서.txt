@@ -7,3 +7,5 @@ todocontroller
 -> Todo클래스 CreateTodoReqDto에 Todo를 받는 toEntity생성
 -> TodoServiceImpl  Todo에 createTodoReqDto.toEntity 전달
 -> TodoRepository 인터페이스 생성
+-> todo.xml 작성
+-> TodoServiceImpl  return todoRepository.save(todoEntity) > 0
