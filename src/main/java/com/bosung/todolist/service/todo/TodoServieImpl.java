@@ -44,7 +44,7 @@ public class TodoServieImpl implements TodoService {
 //	---------------------------------------------------------------------------------------------------------
 
 	@Override
-	public List<TodoListRespDto> getTodoList(int page, int contentCount) throws Exception {
+	public List<TodoListRespDto> getTodoList(String type, int page, int contentCount) throws Exception {
 //		Map<String, Object> map = new HashMap<String, Object>();
 //		map.put("index", (page - 1) * contentCount);
 //		map.put("count", contentCount);
@@ -54,14 +54,14 @@ public class TodoServieImpl implements TodoService {
 //		});
 //		중복코드
 		
-		List<Todo> todoList = todoRepository.getTodoListOfIndex(createGetTodoListMap(page, contentCount));
+		List<Todo> todoList = todoRepository.getTodoList(createGetTodoListMap(type, page, contentCount));
 		return createTodoListRespDtos(todoList);
 	}
 	
 //	---------------------------------------------------------------------------------------------------------
-
-	@Override
-	public List<TodoListRespDto> getImportanceList(int page, int contentCount) throws Exception {
+//	위 메소드로 통일시킴
+//	@Override
+//	public List<TodoListRespDto> getImportanceList(int page, int contentCount) throws Exception {
 //		Map<String, Object> map = new HashMap<String, Object>();
 //		map.put("index", (page - 1) * contentCount);
 //		map.put("count", contentCount);
@@ -71,15 +71,16 @@ public class TodoServieImpl implements TodoService {
 //		});
 //		중복코드
 		
-		List<Todo> todoList = todoRepository.getImportanceTodoListOfIndex(createGetTodoListMap(page, contentCount));
-		return createTodoListRespDtos(todoList);
-	}
+//		List<Todo> todoList = todoRepository.getImportanceTodoListOfIndex(createGetTodoListMap(page, contentCount));
+//		return createTodoListRespDtos(todoList);
+//	}
 	
 //	---------------------------------------------------------------------------------------------------------
 	
 	// 중복코드 캡슐화
-	private Map<String, Object> createGetTodoListMap(int page, int contentCount) {
+	private Map<String, Object> createGetTodoListMap(String type, int page, int contentCount) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("type", type);
 		map.put("index", (page - 1) * contentCount);
 		map.put("count", contentCount);
 		return map;
