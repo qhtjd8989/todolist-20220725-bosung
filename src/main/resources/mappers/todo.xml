@@ -59,7 +59,11 @@
 							from
 								todo_mst
 							where
-								todo_complete = 0) tc ON (1 = 1)
+								todo_complete = 0
+								<if test='type.equals("importance")'>
+										and importance_flag = 1
+								</if>
+								) tc ON (1 = 1)
 		where
 			<choose>
 				<when test='type.equals("importance")'>
